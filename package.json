@@ -1,0 +1,29 @@
+{
+  "name": "ekoodit",
+  "version": "1.0.0",
+  "description": "Tietoa eri e-koodeista",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "fs": "0.0.1-security",
+    "skel": "0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcparni/ekoodit.git"
+  },
+  "author": "Miika Pärni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcparni/ekoodit/issues"
+  },
+  "homepage": "https://github.com/mcparni/ekoodit#readme"
+}
