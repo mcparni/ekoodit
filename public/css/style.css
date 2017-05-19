@@ -1,3 +1,10 @@
+.content {
+	margin: 100px;
+}
+.jumbotron {
+	padding: 40px;
+}
+
 h2 {
 	color: blue;
 }
