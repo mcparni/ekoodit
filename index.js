@@ -6,15 +6,14 @@ var dataSet = require("./data/dataset.js");
 var path    = require("path");
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
-
+var port = process.env.PORT || 3000;
 
 fs.readFile('data/ekoodit.json', 'utf8', function (err, data) {
 	if (err) throw err;
 	var obj = JSON.parse(data);
 	dataArray = obj.eNumbers;
 	
-	app.use(express.static('public'));
+	app.use(express.static(__dirname + '/public'));
 
 	app.get('/',function(req,res){
   		res.sendFile(path.join(__dirname+'/public/index.html'));
@@ -34,11 +33,12 @@ fs.readFile('data/ekoodit.json', 'utf8', function (err, data) {
     			io.emit('results', 0);
     		else
     			io.emit('results', res[0]);
+    		
   		});
 	});
 
-	http.listen(3000, function(){
-		console.log('kuunnellaan porttia *:3000. Mene selaimellasi osoitteeseen: localhost:3000');
+	http.listen(port, function(){
+		console.log('kuunnellaan porttia *:' + port + '. Mene selaimellasi osoitteeseen: localhost:' + port);
 	});
 
 });

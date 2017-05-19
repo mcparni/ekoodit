@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Tietoa eri e-koodeista",
   "main": "index.js",
+  "engines": {
+    "node": "6.10.2"
+  },
   "dependencies": {
     "express": "^4.15.3",
     "fs": "0.0.1-security",
