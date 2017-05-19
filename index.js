@@ -2,23 +2,26 @@ var fs = require('fs');
 var dataArray = [];
 var express = require('express');
 var app = express();
-var dataSet = require("./dataset.js");
+var dataSet = require("./data/dataset.js");
 var path    = require("path");
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 
-fs.readFile('ekoodit.json', 'utf8', function (err, data) {
-    if (err) throw err;
-    var obj = JSON.parse(data);
-    dataArray = obj.eNumbers;
+
+fs.readFile('data/ekoodit.json', 'utf8', function (err, data) {
+	if (err) throw err;
+	var obj = JSON.parse(data);
+	dataArray = obj.eNumbers;
+	
+	app.use(express.static('public'));
 
 	app.get('/',function(req,res){
-  		res.sendFile(path.join(__dirname+'/index.html'));
+  		res.sendFile(path.join(__dirname+'/public/index.html'));
   		
 	});
 	app.get('/result',function(req,res){
-  		res.sendFile(path.join(__dirname+'/result.html'));
+  		res.sendFile(path.join(__dirname+'/public/result.html'));
   		
 	});
 	
@@ -35,7 +38,7 @@ fs.readFile('ekoodit.json', 'utf8', function (err, data) {
 	});
 
 	http.listen(3000, function(){
-		console.log('kuunnellaan porttia *:3000');
+		console.log('kuunnellaan porttia *:3000. Mene selaimellasi osoitteeseen: localhost:3000');
 	});
 
 });
