@@ -1,2 +1,2 @@
-# ekoodit
-Tietoa eri e-koodeista
+# Ekoodit
+NodeJs applikaatio, jossa tietoa eri e-koodeista
