@@ -5,6 +5,57 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(function () {
+			var socket = io();
+			$('form').submit(function(){
+				socket.emit('search', $('#m').val());
+				$('#m').val('');
+			
+				return false;
+			});
+			socket.on('results', function(res){
+				$('#results').html();
+				if(res == 0) {
+					$('#results').html("Ei tuloksia");
+					return;
+				}
+
+		    	var urlPrefix = 'https://www.evira.fi';
+		    	var url = urlPrefix + res.FriendlyUrl;
+		    	var ename = res.ENumberName;
+		    	var enumber = res.ENumber;
+		    	var ecolor = res.Color;
+		    	var edescription = res.Description;
+		    	var eADI = res.ADI;
+		    	var eGroups = res.AdditiveGroups;
+		    	var eprops = res.Properties;
+
+		    	if(ecolor == null)
+		    		ecolor = "-";
+
+		    	if(eprops == null)
+		    		eprops = "-";
+
+		    	if(eGroups.length == 0)
+		    		eGroups = "-";
+		    	else
+		    		eGroups = eGroups[0];
+
+		    	$.get('/result', function(data) {
+		    		$('#results').html(data);
+				    $("#results .ename").html(ename);
+				    $("#results .ecolor").html(ecolor);
+				    $("#results .edescription").html(edescription);
+				    $("#results .eADI").html(eADI);
+				    $("#results .eGroups").html(eGroups);
+				    $("#results .eprops").html(eprops);
+				    $("#results .elink a").attr("href", url);
+				});
+		    });
+		});
+	</script>
 </head>
 <body>
 	<div style="margin:100px;">
@@ -16,12 +67,14 @@
 		</nav>
 		<div class="jumbotron"  style="padding:40px;">
 			<h1>Ekoodit</h1>
-			<p>Tässä voit hakea ekoodia, jotta saat siitä lisää tietoa</p>
+			<p>Tässä voit hakea ekoodia, jotta saat siitä lisää tietoa. Esimerkiksi: E523, E951, E173, E160B, E620, ...</p>
 			<form action="">
 				<input id="m" placeholder="ekoodi" autocomplete="off" />
 				<button>Hae</button>
 			</form>
+			<div id="results">				
 			
+			</div>			
 		</div>
 	</div>
 </body>
