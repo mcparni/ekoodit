@@ -6,7 +6,7 @@ Demo toimivasta sovelluksesta löytyy <a href="https://radiant-falls-66895.herok
 
 ## Asennusohje
 - Avaa terminal-sovellus
-- Kloonaa tämä repo: git clone https://github.com/mcparni/ekoodit.git
+- git clone https://github.com/mcparni/ekoodit.git
 - cd ekoodit 
 - npm install
 - npm start
