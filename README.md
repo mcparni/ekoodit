@@ -11,3 +11,4 @@ Demo toimivasta sovelluksesta löytyy <a href="https://radiant-falls-66895.herok
 - npm install
 - npm start
 - Mene selaimellasi osoitteeseen: localhost:3000
+- Voit hakea HTML-sivun hakukentässä mitä tahansa E-koodia mihin suomessa törmäät.
